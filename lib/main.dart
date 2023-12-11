@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'featuers/splash/presentation/views/splash_screen.dart';
+import 'package:parking/featuers/onboarding/presentation/views/onboarding_screen.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const ParkingApp());
 }
-
 
 class ParkingApp extends StatelessWidget {
   const ParkingApp({Key? key}) : super(key: key);
@@ -13,14 +14,11 @@ class ParkingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.rubikTextTheme(
-          Theme.of(context).textTheme
-        ),
+        textTheme: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme),
       ),
       home: const SplashScreen(),
     );
   }
 }
-
-
