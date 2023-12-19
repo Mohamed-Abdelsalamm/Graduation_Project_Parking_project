@@ -113,3 +113,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/png/splash-vectors.png
+  android_gravity: center
+  ios_content_mode: center
