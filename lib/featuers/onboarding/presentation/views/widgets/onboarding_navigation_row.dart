@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:parking/featuers/onboarding/data/models/onboarding_page_model.dart';
+import 'package:parking/core/utils/colors_styles.dart';
+import 'package:parking/core/utils/text_styles.dart';
 
 class OnBoardingNavigationRow extends StatelessWidget {
   const OnBoardingNavigationRow({
     super.key,
-    required this.pages,
-    required this.pageViewController,
+    required this.selectedPage,
+    required this.onSkipTapped,
+    required this.onNextTapped,
   });
 
-  final List<OnBoardingPageModel> pages;
-  final PageController pageViewController;
+  final int selectedPage;
+  final onSkipTapped;
+  final onNextTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +21,13 @@ class OnBoardingNavigationRow extends StatelessWidget {
       padding: EdgeInsets.all(16.0),
       child: Row(
         children: [
-          Text(
-            'SKIP',
-            style: TextStyle(
-              color: Color(0xFF0C2CFF),
-              fontWeight: FontWeight.bold,
-              height: 1,
-              fontSize: 14.sp,
+          GestureDetector(
+            onTap: onSkipTapped,
+            child: Text(
+              'SKIP',
+              style: TextStyles()
+                  .textStyle14Bold
+                  .copyWith(color: ColorStyles.blue500),
             ),
           ),
           Expanded(
@@ -33,19 +36,17 @@ class OnBoardingNavigationRow extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ...List.generate(
-                    pages.length,
+                    3,
                     (index) => AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      height: 10.w,
-                      width: pageViewController.page!.round() == index
-                          ? 30.w
-                          : 10.w,
+                      height: 7.w,
+                      width: selectedPage == index ? 30.w : 7.w,
                       margin: EdgeInsets.symmetric(horizontal: 2.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.w),
-                        color: pageViewController.page!.round() == index
-                            ? Color(0xFF0C2CFF).withOpacity(0.4)
-                            : Colors.grey.withOpacity(0.4),
+                        color: selectedPage == index
+                            ? ColorStyles.blue500.withOpacity(0.5)
+                            : Colors.grey.withOpacity(0.5),
                       ),
                     ),
                   ),
@@ -53,13 +54,13 @@ class OnBoardingNavigationRow extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            'NEXT',
-            style: TextStyle(
-              color: Color(0xFF0C2CFF),
-              fontWeight: FontWeight.bold,
-              height: 1,
-              fontSize: 14.sp,
+          GestureDetector(
+            onTap: onNextTapped,
+            child: Text(
+              'NEXT',
+              style: TextStyles()
+                  .textStyle14Bold
+                  .copyWith(color: ColorStyles.blue700),
             ),
           ),
         ],
