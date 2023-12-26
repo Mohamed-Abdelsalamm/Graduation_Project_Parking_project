@@ -19,10 +19,11 @@ class CustomTextField extends StatelessWidget {
     this.verticalContentPadding = 10,
     this.suffixIcon, this.controller,
     this.onChanged,
-    this.hintStyle,
+    this.hintStyle, this.fillColor,
   }) : super(key: key);
 
   final String hintText;
+  final Color? fillColor;
   final TextEditingController? controller;
   final bool obscureText;
   final bool closeOnTapOutside;
@@ -55,6 +56,8 @@ class CustomTextField extends StatelessWidget {
       },
       validator: validator,
       decoration: InputDecoration(
+        fillColor: fillColor,
+        filled: true,
         hintText: hintText,
         suffixIconColor: ColorStyles.grey.withOpacity(0.6),
         contentPadding: EdgeInsets.symmetric(horizontal: horizontalContentPadding.sp,vertical: horizontalContentPadding.sp),
@@ -76,8 +79,9 @@ class CustomTextField extends StatelessWidget {
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(24.r),
             borderSide: const BorderSide(color: ColorStyles.red)),*/
-        border: const OutlineInputBorder(
-            borderSide:BorderSide.none
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide.none
         ),
       ),
     );

@@ -11,6 +11,6 @@ class NotificationBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20.h),
-        itemBuilder: (context, index) => NotificationListItem() , separatorBuilder: (context, index) => SizedBox(height: 20.h), itemCount: 10);
+        itemBuilder: (context, index) => const NotificationListItem() , separatorBuilder: (context, index) => SizedBox(height: 20.h), itemCount: 10);
   }
 }
