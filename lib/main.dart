@@ -25,6 +25,7 @@ class ParkingApp extends StatelessWidget {
           );
         },
         theme: ThemeData(
+          scaffoldBackgroundColor: Colors.grey.shade100,
           textTheme: GoogleFonts.rubikTextTheme(
             Theme.of(context).textTheme
           ),
