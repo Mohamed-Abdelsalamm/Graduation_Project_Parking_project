@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:parking/featuers/authentication/presentation/views/create_new_password_view.dart';
 import 'package:parking/featuers/authentication/presentation/views/login_view.dart';
 import 'package:parking/featuers/authentication/presentation/views/signup_view.dart';
+import 'package:parking/featuers/home/presentation/views/home_view.dart';
 import 'package:parking/featuers/onboarding/presentation/views/onboarding_view.dart';
 import 'package:parking/featuers/parking_history/presentation/views/my_parking_view.dart';
 import 'package:parking/featuers/profile/presentation/views/user_profile_view.dart';
@@ -13,7 +14,8 @@ abstract class AppRouter {
   static const kLoginView = "/3" /*"/myParkingView"*/;
   static const kSignUpView = "/4" /*"/myParkingView"*/;
   static const kCreateNewPasswordView = "/5" /*"/myParkingView"*/;
-  static const kProfileView = "/" /*"/myParkingView"*/;
+  static const kProfileView = "/6" /*"/myParkingView"*/;
+  static const kHomeView = "/" /*"/myParkingView"*/;
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -46,6 +48,11 @@ abstract class AppRouter {
         path: kProfileView,
         builder: (BuildContext context, GoRouterState state) =>
             const UserProfileView(),
+      ),
+      GoRoute(
+        path: kHomeView,
+        builder: (BuildContext context, GoRouterState state) =>
+            const HomeView(),
       ),
     ],
   );
