@@ -5,6 +5,7 @@ import 'package:parking/featuers/book_mark/presentation/view/my_book_mark_view.d
 import 'package:parking/featuers/notification/presentation/view/notification_view.dart';
 import 'package:parking/featuers/onboarding/presentation/views/onboarding_view.dart';
 import 'package:parking/featuers/parking_history/presentation/views/my_parking_view.dart';
+import 'package:parking/featuers/profile/presentation/view/edit_profile_view.dart';
 import 'package:parking/featuers/profile/presentation/view/profile_view.dart';
 import 'package:parking/featuers/search/presentation/view/search_view.dart';
 
@@ -16,7 +17,8 @@ abstract class AppRouter {
   static const kMyBookMarkView = "/myParkingView";
   static const kNotificationView = "/notificationView";
   static const kSearchView = "/searchView";
-  static const kProfileView = "/" /*"/profileView"*/;
+  static const kProfileView = "/profileView";
+  static const kEditProfileView = "/" /*"/editProfileView"*/;
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -55,6 +57,11 @@ abstract class AppRouter {
         path: kProfileView,
         builder: (BuildContext context, GoRouterState state) =>
         const ProfileView(),
+      ),
+      GoRoute(
+        path: kEditProfileView,
+        builder: (BuildContext context, GoRouterState state) =>
+        const EditProfileView(),
       ),
     ],
   );
