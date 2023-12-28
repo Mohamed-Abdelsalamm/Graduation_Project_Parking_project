@@ -37,19 +37,21 @@ class ProfileView extends StatelessWidget {
       ),
       body: SizedBox(
         width: MediaQuery.sizeOf(context).width,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center, children: [
-            SizedBox(
-              height: 40.h,
-            ),
-            const ProfileViewHeader(),
-            SizedBox(height: 30.h,),
-            Divider(endIndent: 25.w,indent: 25.w,),
-            SizedBox(height: 25.h,),
-            const ProfileViewBody(),
-          ]),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center, children: [
+              SizedBox(
+                height: 40.h,
+              ),
+              const ProfileViewHeader(),
+              SizedBox(height: 30.h,),
+              Divider(endIndent: 25.w,indent: 25.w,),
+              SizedBox(height: 25.h,),
+              const ProfileViewBody(),
+            ]),
+          ),
         ),
       ),
     );

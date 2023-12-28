@@ -9,6 +9,8 @@ class ProfileViewBody extends StatelessWidget {
     super.key,
   });
 
+    final double space = 40;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,7 +30,7 @@ class ProfileViewBody extends StatelessWidget {
               ]),
         ),
         SizedBox(
-          height: 25.h,
+          height: space.h,
         ),
         GestureDetector(
           child: Row(
@@ -45,7 +47,7 @@ class ProfileViewBody extends StatelessWidget {
               ]),
         ),
         SizedBox(
-          height: 25.h,
+          height: space.h,
         ),
         GestureDetector(
           child: Row(
@@ -62,7 +64,7 @@ class ProfileViewBody extends StatelessWidget {
               ]),
         ),
         SizedBox(
-          height: 25.h,
+          height: space.h,
         ),
         GestureDetector(
           child: Row(
@@ -79,7 +81,7 @@ class ProfileViewBody extends StatelessWidget {
               ]),
         ),
         SizedBox(
-          height: 25.h,
+          height: space.h,
         ),
         GestureDetector(
           child: Row(
@@ -96,7 +98,7 @@ class ProfileViewBody extends StatelessWidget {
               ]),
         ),
         SizedBox(
-          height: 25.h,
+          height: space.h,
         ),
         GestureDetector(
           child: Row(
