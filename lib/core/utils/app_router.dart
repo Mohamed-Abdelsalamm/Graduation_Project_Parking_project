@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:parking/featuers/authentication/presentation/views/login_view.dart';
-import 'package:parking/featuers/book_mark/presintation/view/my_book_mark_view.dart';
+import 'package:parking/featuers/book_mark/presentation/view/my_book_mark_view.dart';
 import 'package:parking/featuers/notification/presentation/view/notification_view.dart';
 import 'package:parking/featuers/onboarding/presentation/views/onboarding_view.dart';
 import 'package:parking/featuers/parking_history/presentation/views/my_parking_view.dart';
-import 'package:parking/featuers/search/presintation/view/search_view.dart';
+import 'package:parking/featuers/search/preseintation/view/search_view.dart';
+
 
 abstract class AppRouter {
   static const kMyParkingView = "/1" /*"/myParkingView"*/;

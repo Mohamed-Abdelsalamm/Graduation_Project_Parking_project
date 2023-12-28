@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
 import 'package:parking/core/widgets/customTextField.dart';
-import 'package:parking/featuers/search/presintation/view/widgets/search_result_item.dart';
+import 'package:parking/featuers/search/presentation/view/widgets/search_result_item.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({Key? key}) : super(key: key);

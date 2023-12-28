@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:parking/core/utils/text_styles.dart';
-import 'package:parking/featuers/book_mark/presintation/view/widgets/bookmark_view_body.dart';
+import 'package:parking/featuers/book_mark/presentation/view/widgets/bookmark_view_body.dart';
 
 class MyBookMarkView extends StatelessWidget {
   const MyBookMarkView({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parking/core/widgets/customTextField.dart';
-import 'package:parking/featuers/book_mark/presintation/view/widgets/bookmark_list_item.dart';
+import 'package:parking/featuers/book_mark/presentation/view/widgets/bookmark_list_item.dart';
 
 
 class BookmarkViewBody extends StatelessWidget {
