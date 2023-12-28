@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:parking/core/utils/box_shadow_constants.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
 import 'package:parking/core/widgets/custom_text_form_field.dart';
@@ -101,17 +102,7 @@ class HomeView extends StatelessWidget {
                           color: ColorStyles.grey,
                         ),
                         textEditingController: TextEditingController(),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset:
-                                Offset(0, 0), // Set the offset of the shadow
-                            blurRadius:
-                                10.0, // Set the blur radius of the shadow
-                            spreadRadius:
-                                0.0, // Set the spread radius of the shadow
-                          ),
-                        ],
+                        boxShadow: const [BoxShadowsConstants.lightBoxShadow],
                       ),
                     ),
                     SizedBox(
