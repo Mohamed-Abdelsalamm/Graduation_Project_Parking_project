@@ -182,16 +182,6 @@ class GarageView extends StatelessWidget {
                         BorderRadius.vertical(top: Radius.circular(25.r))),
                 child: Row(
                   children: [
-                    const Expanded(
-                      child: CustomButton(
-                        title: "Cancel",
-                        backgroundColor: ColorStyles.blue100,
-                        textColor: ColorStyles.blue700,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16.w,
-                    ),
                     Expanded(child: CustomButton(title: "Book Parking")),
                   ],
                 ),
