@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:parking/featuers/authentication/presentation/views/create_new_password_view.dart';
 import 'package:parking/featuers/authentication/presentation/views/login_view.dart';
+import 'package:parking/featuers/authentication/presentation/views/signup_view.dart';
+import 'package:parking/featuers/book_mark/presentation/view/my_book_mark_view.dart';
+import 'package:parking/featuers/garage_details/presentation/views/garage_view.dart';
+import 'package:parking/featuers/home/presentation/views/home_view.dart';
+import 'package:parking/featuers/notification/presentation/view/notification_view.dart';
 import 'package:parking/featuers/onboarding/presentation/views/onboarding_view.dart';
 import 'package:parking/featuers/parking_history/presentation/views/my_parking_view.dart';
+import 'package:parking/featuers/profile/presentation/view/edit_profile_view.dart';
+import 'package:parking/featuers/profile/presentation/view/profile_view.dart';
+import 'package:parking/featuers/profile/presentation/views/user_profile_view.dart';
+import 'package:parking/featuers/search/presentation/view/search_view.dart';
 
 abstract class AppRouter {
-  static const kMyParkingView = "/1" /*"/myParkingView"*/;
-  static const kOnBoardingView = "/2" /*"/myParkingView"*/;
-  static const kLoginView = "/" /*"/myParkingView"*/;
-  static const kMyBookMarkView = "/myParkingView";
+  static const kMyParkingView = "/myParkingView";
+  static const kOnBoardingView = "/";
+  static const kLoginView = "/loginView ";
+  static const kMyBookMarkView = "/myBookMarkView";
   static const kNotificationView = "/notificationView";
   static const kSearchView = "/searchView";
   static const kProfileView = "/profileView";
-  static const kEditProfileView = "/" /*"/editProfileView"*/;
-  static const kLoginView = "/3" /*"/myParkingView"*/;
-  static const kSignUpView = "/4" /*"/myParkingView"*/;
-  static const kCreateNewPasswordView = "/5" /*"/myParkingView"*/;
-  static const kProfileView = "/6" /*"/myParkingView"*/;
-  static const kHomeView = "/7" /*"/myParkingView"*/;
-  static const kGarageView = "/" /*"/myParkingView"*/;
+  static const kEditProfileView = "/editProfileView";
+  static const kSignUpView = "/signUpView";
+  static const kCreateNewPasswordView = "/createNewPasswordView";
+  static const kHomeView = "/homeView";
+  static const kGarageView = "/garageView";
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -40,59 +48,57 @@ abstract class AppRouter {
       GoRoute(
         path: kMyBookMarkView,
         builder: (BuildContext context, GoRouterState state) =>
-        const MyBookMarkView(),
+            const MyBookMarkView(),
       ),
       GoRoute(
         path: kNotificationView,
         builder: (BuildContext context, GoRouterState state) =>
-        const NotificationView(),
+            const NotificationView(),
       ),
       GoRoute(
         path: kSearchView,
         builder: (BuildContext context, GoRouterState state) =>
-        const SearchView(),
+            const SearchView(),
       ),
-
       GoRoute(
         path: kProfileView,
         builder: (BuildContext context, GoRouterState state) =>
-        const ProfileView(),
+            const ProfileView(),
       ),
       GoRoute(
         path: kEditProfileView,
         builder: (BuildContext context, GoRouterState state) =>
-        const EditProfileView(),
+            const EditProfileView(),
       ),
-
       GoRoute(
         path: kSignUpView,
         builder: (BuildContext context, GoRouterState state) =>
-        const SignUpView(),
+            const SignUpView(),
       ),
       GoRoute(
         path: kCreateNewPasswordView,
         builder: (BuildContext context, GoRouterState state) =>
-        const CreateNewPasswordView(),
+            const CreateNewPasswordView(),
       ),
       GoRoute(
         path: kProfileView,
         builder: (BuildContext context, GoRouterState state) =>
-        const UserProfileView(),
+            const UserProfileView(),
       ),
       GoRoute(
         path: kHomeView,
         builder: (BuildContext context, GoRouterState state) =>
-        const HomeView(),
+            const HomeView(),
       ),
       GoRoute(
         path: kGarageView,
         builder: (BuildContext context, GoRouterState state) =>
-        const GarageView(),
+            const GarageView(),
       ),
       GoRoute(
         path: kGarageView,
         builder: (BuildContext context, GoRouterState state) =>
-        const GarageView(),
+            const GarageView(),
       ),
     ],
   );
