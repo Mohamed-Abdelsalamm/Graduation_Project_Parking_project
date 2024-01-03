@@ -1,34 +1,52 @@
-import 'package:parking/featuers/onboarding/data/models/onboarding_page_model.dart';
-import 'package:parking/featuers/onboarding/data/repo/onboarding_repo.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:parking/core/errors/failures.dart';
+import 'package:parking/core/utils/api_service.dart';
+import 'package:parking/featuers/authentication/data/models/user_login_request_model.dart';
+import 'package:parking/featuers/authentication/data/models/user_login_response.dart';
+import 'package:parking/featuers/authentication/data/models/user_register_response.dart';
+import 'package:parking/featuers/authentication/data/repo/auth_repo.dart';
 
-class OnBoardingRepoImpl implements OnBoardingRepo {
+class AuthRepoImpl implements AuthRepo {
+  final ApiService apiService;
+
+  AuthRepoImpl(this.apiService);
+
   @override
-  List<OnBoardingPageModel> getOnBoardingPages() {
-    return [
-      OnBoardingPageModel(
-        assetImage: 'assets/png/onboarding1.png',
-        titlePart1: 'Find Parking',
-        titleKeyword: 'Places',
-        titlePart2: 'Around You Easily',
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      ),
-      OnBoardingPageModel(
-        assetImage: 'assets/png/onboarding2.png',
-        titlePart1: 'Book And Pay',
-        titleKeyword: 'Parking',
-        titlePart2: 'Quickly And Safely',
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      ),
-      OnBoardingPageModel(
-        assetImage: 'assets/png/onboarding3.png',
-        titlePart1: 'Extend',
-        titleKeyword: 'Parking',
-        titlePart2: 'Time As You Need',
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-      ),
-    ];
+  Future<Either<Failure, UserLoginResponseModel>> loginUser(
+      {required UserLoginRequestModel userLoginRequestModel}) async {
+    try {
+      print("----------> Step1");
+      var data = await apiService.get(
+        endPoint: "userLogin/",
+        data: userLoginRequestModel.toJson(),
+      );
+      print("----------> Step2");
+      UserLoginResponseModel userLoginResponseModel =
+          UserLoginResponseModel.fromJson(data);
+      print("----------> Step3");
+      return right(userLoginResponseModel);
+    } catch (e) {
+      print("----------> Step4");
+      print("----------> ${e.toString()}");
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<UserRegisterResponse> registerUser(
+      {required String mail,
+      required String fullName,
+      required String password}) async {
+    return UserRegisterResponse(
+      mail: "mail",
+      fullName: "fullName",
+    );
   }
 }

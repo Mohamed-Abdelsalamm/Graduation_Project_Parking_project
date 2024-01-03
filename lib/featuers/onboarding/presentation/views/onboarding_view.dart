@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:parking/core/utils/app_router.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
 import 'package:parking/featuers/onboarding/data/repo/onboarding_repo_impl.dart';
@@ -113,7 +115,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               flex: 1,
               child: OnBoardingNavigationRow(
                 selectedPage: _selectedPage,
-                onSkipTapped: () {},
+                onSkipTapped: () async {
+                  await GoRouter.of(context)
+                      .pushReplacement(AppRouter.kLoginView);
+                },
                 onNextTapped: () {
                   pageViewController.animateToPage(
                       min(pageViewController.page!.round() + 1, 3),

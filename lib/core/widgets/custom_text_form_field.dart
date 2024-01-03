@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.boxShadow,
+    this.validator,
   });
   var hintText2;
   var textEditingController;
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
   var suffixIcon;
   var obscureText;
   var boxShadow;
+  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
         controller: textEditingController,
         keyboardType: TextInputType.emailAddress,
         obscureText: obscureText,
+        validator: validator,
         decoration: InputDecoration(
           hintText: hintText2,
           hintStyle: const TextStyle(color: ColorStyles.grey, height: 1),
