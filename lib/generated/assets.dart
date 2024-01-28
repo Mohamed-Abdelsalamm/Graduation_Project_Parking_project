@@ -4,13 +4,14 @@ class Assets {
 
   static const String pngArchiveIcon = 'assets/png/archive_icon.png';
   static const String pngFailurePayment = 'assets/png/failure-payment.png';
+  static const String pngLaneGoLogo = 'assets/png/laneGo_Logo.png';
   static const String pngOnboarding1 = 'assets/png/onboarding1.png';
   static const String pngOnboarding2 = 'assets/png/onboarding2.png';
   static const String pngOnboarding3 = 'assets/png/onboarding3.png';
   static const String pngParkIcon = 'assets/png/park_icon.png';
   static const String pngPasswordVectors = 'assets/png/password-vectors.png';
-  static const String pngProfilePlaceholder =
-      'assets/png/profile-placeholder.jpg';
+  static const String pngPlayStore512 = 'assets/png/play_store_512.png';
+  static const String pngProfilePlaceholder = 'assets/png/profile-placeholder.jpg';
   static const String pngSplashVectors = 'assets/png/splash-vectors.png';
   static const String pngSuccessPayment = 'assets/png/success-payment.png';
   static const String pngUpDownIcon = 'assets/png/up_down_icon.png';
@@ -49,4 +50,5 @@ class Assets {
   static const String svgSortArrows = 'assets/svg/sort-arrows.svg';
   static const String svgVisaCard = 'assets/svg/visa-card.svg';
   static const String svgWallet = 'assets/svg/wallet.svg';
+
 }

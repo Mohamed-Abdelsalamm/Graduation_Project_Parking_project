@@ -6,6 +6,7 @@ import 'package:parking/featuers/authentication/presentation/views/signup_view.d
 import 'package:parking/featuers/book_mark/presentation/view/my_book_mark_view.dart';
 import 'package:parking/featuers/garage_details/presentation/views/garage_view.dart';
 import 'package:parking/featuers/home/presentation/views/home_view.dart';
+import 'package:parking/featuers/nav_bar/presentation/view/bottom_nav_bar.dart';
 import 'package:parking/featuers/notification/presentation/view/notification_view.dart';
 import 'package:parking/featuers/onboarding/presentation/views/onboarding_view.dart';
 import 'package:parking/featuers/parking_history/presentation/views/my_parking_view.dart';
@@ -25,8 +26,9 @@ abstract class AppRouter {
   static const kEditProfileView = "/editProfileView";
   static const kSignUpView = "/signUpView";
   static const kCreateNewPasswordView = "/createNewPasswordView";
-  static const kHomeView = "/homeView";
+  static const kHomeView = "/HomeView";
   static const kGarageView = "/garageView";
+  static const kBottomNavBar = "/bottomNavBar";
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -98,6 +100,11 @@ abstract class AppRouter {
         path: kGarageView,
         builder: (BuildContext context, GoRouterState state) =>
             const GarageView(),
+      ),
+      GoRoute(
+        path: kBottomNavBar,
+        builder: (BuildContext context, GoRouterState state) =>
+            const BottomNavBarView(),
       ),
     ],
   );

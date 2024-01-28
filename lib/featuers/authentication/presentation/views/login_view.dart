@@ -29,7 +29,7 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) async {
         if (state is LoginSuccess) {
-          await GoRouter.of(context).push(AppRouter.kHomeView);
+          await GoRouter.of(context).push(AppRouter.kBottomNavBar);
           emailController.clear();
           passwordController.clear();
           loading = false;

@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parking/core/utils/service_locator.dart';
 import 'package:parking/featuers/authentication/data/repo/auth_repo_impl.dart';
 import 'package:parking/featuers/authentication/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:parking/featuers/nav_bar/presentation/manger/botton_nav_bar_cubit.dart';
 
 import 'core/utils/app_router.dart';
 
@@ -28,6 +29,9 @@ class ParkingApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => LoginCubit(getIt.get<AuthRepoImpl>()),
+          ),
+          BlocProvider(
+            create: (context) => BottomNavigationCubit(),
           ),
         ],
         child: MaterialApp.router(

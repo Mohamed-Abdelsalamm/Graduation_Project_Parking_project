@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:parking/core/utils/app_router.dart';
 import 'package:parking/core/utils/box_shadow_constants.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
@@ -18,34 +20,35 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
                             color: Colors.white,
-                            border: Border.all(
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.circular(50.r),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50.r),
-                            child: Image.asset(
-                              Assets.pngProfilePlaceholder,
-                              height: 30.h,
-                              width: 30.h,
-                            ),
+                          borderRadius: BorderRadius.circular(50.r),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.r),
+                          child: Image.asset(
+                            Assets.pngProfilePlaceholder,
+                            height: 30.h,
+                            width: 30.h,
                           ),
                         ),
-                        Container(
+                      ),
+                      GestureDetector(
+                        onTap: () => GoRouter.of(context).push(AppRouter.kNotificationView),
+                        child: Container(
                           padding: EdgeInsets.all(4.h),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -54,31 +57,31 @@ class HomeView extends StatelessWidget {
                           child: SvgPicture.asset(
                             Assets.svgNotifications,
                             height: 24.h,
-                            color: ColorStyles.blue500,
+                            colorFilter: const ColorFilter.mode(ColorStyles.blue500, BlendMode.srcIn),
                           ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Text(
-                      "Good Morning, $name",
-                      style: TextStyles().textStyle12regular.copyWith(
-                            color: Colors.white,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Text(
-                      'Find the best\nplace to park.',
-                      style: TextStyles()
-                          .textStyle20Bold
-                          .copyWith(color: Colors.white, height: 1.35),
-                    ),
-                  ],
-                ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Text(
+                    "Good Morning, $name",
+                    style: TextStyles().textStyle12regular.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Text(
+                    'Find the best\nplace to park.',
+                    style: TextStyles()
+                        .textStyle20Bold
+                        .copyWith(color: Colors.white, height: 1.35),
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -93,7 +96,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
+                    SizedBox(
                       height: 48.h,
                       child: CustomTextFormField(
                         hintText2: 'Search',
@@ -121,7 +124,11 @@ class HomeView extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return ParkingGarageListTile();
+                          return GestureDetector(
+                            onTap: (){
+                              GoRouter.of(context).push(AppRouter.kGarageView);
+                            },
+                              child: const ParkingGarageListTile());
                         },
                       ),
                     ),

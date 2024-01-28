@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -126,11 +128,14 @@ class MyParkingViewListItem extends StatelessWidget {
           bookType == Constants.kOnGoing
               ? Row(
                   children: [
-                    const Expanded(child: CustomButton(title: "View Timer")),
+                    Expanded(child: GestureDetector(
+                        child: const CustomButton(title: "View Timer"))),
                     SizedBox(
                       width: 20.w,
                     ),
-                    const Expanded(child: CustomButton(title: "View Ticket")),
+                    Expanded(child: GestureDetector(
+                      onTap: () => _showQRCodeDialog(context),
+                        child: const CustomButton(title: "View Ticket"))),
                   ],
                 )
               : const SizedBox(),
@@ -138,4 +143,16 @@ class MyParkingViewListItem extends StatelessWidget {
       ),
     );
   }
+  void _showQRCodeDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Scan the QR Code",textAlign: TextAlign.center),
+          content: Icon(Icons.qr_code_2,size: 200.r,),
+        );
+      },
+    );
+  }
+
 }

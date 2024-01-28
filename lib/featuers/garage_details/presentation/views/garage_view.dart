@@ -6,6 +6,7 @@ import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
 import 'package:parking/core/widgets/custom_button.dart';
 import 'package:parking/generated/assets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
@@ -28,7 +29,7 @@ class GarageView extends StatelessWidget {
         children: [
           Positioned.fill(
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Image.network(
@@ -79,26 +80,31 @@ class GarageView extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 4.h, horizontal: 12.w),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30.r),
-                                  border: Border.all(
-                                      color: ColorStyles.blue700, width: 1.5)),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SvgPicture.asset(
-                                    Assets.svgLocationMarker,
-                                    height: 12.h,
-                                    color: ColorStyles.blue700,
-                                  ),
-                                  SizedBox(
-                                    width: 4.w,
-                                  ),
-                                  Text('2 km'),
-                                ],
+                            GestureDetector(
+                              onTap: (){
+                                launchGoogleMaps();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 4.h, horizontal: 12.w),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.r),
+                                    border: Border.all(
+                                        color: ColorStyles.blue700, width: 1.5)),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(
+                                      Assets.svgLocationMarker,
+                                      height: 12.h,
+                                      color: ColorStyles.blue700,
+                                    ),
+                                    SizedBox(
+                                      width: 4.w,
+                                    ),
+                                    const Text('2 km'),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -122,7 +128,7 @@ class GarageView extends StatelessWidget {
                                   SizedBox(
                                     width: 4.w,
                                   ),
-                                  Text('8 AM - 10 PM'),
+                                  const Text('8 AM - 10 PM'),
                                 ],
                               ),
                             ),
@@ -144,7 +150,7 @@ class GarageView extends StatelessWidget {
                                     size: 18.h,
                                     color: ColorStyles.blue700,
                                   ),
-                                  Text('2.00 / hr'),
+                                  const Text('2.00 / hr'),
                                 ],
                               ),
                             ),
@@ -160,7 +166,7 @@ class GarageView extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        Text(
+                        const Text(
                           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         ),
                       ],
@@ -180,7 +186,7 @@ class GarageView extends StatelessWidget {
                     color: ColorStyles.white,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(25.r))),
-                child: Row(
+                child: const Row(
                   children: [
                     Expanded(child: CustomButton(title: "Book Parking")),
                   ],
@@ -189,5 +195,19 @@ class GarageView extends StatelessWidget {
         ],
       )),
     );
+  }
+  static Future<void> launchGoogleMaps() async {
+    const double destinationLatitude= 31.0409;
+    const double destinationLongitude = 31.3785;
+    final uri = Uri(
+        scheme: "google.navigation",
+        queryParameters: {
+          'q': '$destinationLatitude, $destinationLongitude'
+        });
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      debugPrint('An error occurred');
+    }
   }
 }
