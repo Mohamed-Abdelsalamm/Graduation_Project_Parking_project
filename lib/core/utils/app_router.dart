@@ -18,7 +18,7 @@ import 'package:parking/featuers/search/presentation/view/search_view.dart';
 
 abstract class AppRouter {
   static const kMyParkingView = "/myParkingView";
-  static const kOnBoardingView = "/1";
+  static const kOnBoardingView = "/";
   static const kLoginView = "/kLoginView";
   static const kMyBookMarkView = "/myBookMarkView";
   static const kNotificationView = "/notificationView";
@@ -29,7 +29,7 @@ abstract class AppRouter {
   static const kCreateNewPasswordView = "/createNewPasswordView";
   static const kHomeView = "/HomeView";
   static const kGarageView = "/garageView";
-  static const kBottomNavBar = "/";
+  static const kBottomNavBar = "/kBottomNavBar";
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[

@@ -120,7 +120,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       .pushReplacement(AppRouter.kBottomNavBar);
                 },
                 onNextTapped: () async {
-                  if ((pageViewController.page!.round() + 1) >= 2) {
+                  if ((pageViewController.page!.round() + 1) > 2) {
                     await GoRouter.of(context)
                         .pushReplacement(AppRouter.kBottomNavBar);
                   }
