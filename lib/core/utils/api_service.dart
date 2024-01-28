@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final _baseUrl = "https://lanego-fa06e23094fa.herokuapp.com/";
+  final _baseUrl = "https://lanego-7a87e473834e.herokuapp.com/";
   // static const apiKey = "202312345PSV";
   final Dio _dio;
 

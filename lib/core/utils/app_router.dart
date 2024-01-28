@@ -17,7 +17,7 @@ import 'package:parking/featuers/search/presentation/view/search_view.dart';
 abstract class AppRouter {
   static const kMyParkingView = "/myParkingView";
   static const kOnBoardingView = "/";
-  static const kLoginView = "/loginView";
+  static const kLoginView = "/kLoginView";
   static const kMyBookMarkView = "/myBookMarkView";
   static const kNotificationView = "/notificationView";
   static const kSearchView = "/searchView";
