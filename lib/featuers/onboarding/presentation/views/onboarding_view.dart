@@ -117,12 +117,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 selectedPage: _selectedPage,
                 onSkipTapped: () async {
                   await GoRouter.of(context)
-                      .pushReplacement(AppRouter.kLoginView);
+                      .pushReplacement(AppRouter.kBottomNavBar);
                 },
                 onNextTapped: () async {
                   if ((pageViewController.page!.round() + 1) >= 2) {
                     await GoRouter.of(context)
-                        .pushReplacement(AppRouter.kLoginView);
+                        .pushReplacement(AppRouter.kBottomNavBar);
                   }
                   pageViewController.animateToPage(
                       min(pageViewController.page!.round() + 1, 3),

@@ -32,6 +32,7 @@ class BottomNavBarView extends StatelessWidget {
             currentIndex: state,
             selectedItemColor: ColorStyles.blue700,
             // unselectedItemColor: ColorStyles.grey,
+            backgroundColor: Colors.white,
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
               context.read<BottomNavigationCubit>().updateIndex(index);
