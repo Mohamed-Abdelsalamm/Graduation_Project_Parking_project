@@ -4,18 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
+import 'package:parking/featuers/home/data/models/parking_garage_model.dart';
 import 'package:parking/generated/assets.dart';
 
 class BookmarkListItem extends StatelessWidget {
-  const BookmarkListItem({
+  BookmarkListItem({
     super.key,
+    required this.garageModel,
   });
-
+  final ParkingGarage garageModel;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 10.h),
-      decoration: BoxDecoration(color: ColorStyles.white,
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: ColorStyles.white,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
@@ -24,13 +27,15 @@ class BookmarkListItem extends StatelessWidget {
             width: 70.r,
             height: 70.r,
             child: CachedNetworkImage(
-              imageUrl: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFya2luZ3xlbnwwfHwwfHx8MA%3D%3D",
+              imageUrl: garageModel.image,
               imageBuilder: (context, imageProvider) => Container(
                 width: 70.r,
                 height: 70.r,
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(12.r),),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.r),
+                  ),
                   image: DecorationImage(
                     image: imageProvider,
                     fit: BoxFit.cover,
@@ -41,25 +46,36 @@ class BookmarkListItem extends StatelessWidget {
                 color: Colors.black,
                 size: 10,
               ),
-              errorWidget: (context, url, error) =>
-              const Icon(Icons.error),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
-          SizedBox(width: 20.w,),
+          SizedBox(
+            width: 20.w,
+          ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Welbeck North",style: TextStyles().textStyle18semiBold),
-              SizedBox(height: 10.h,),
-               Text("7159 washington Alley",style: TextStyles().textStyle14regular.copyWith(color: ColorStyles.grey,),),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(garageModel.name, style: TextStyles().textStyle18semiBold),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                garageModel.address,
+                style: TextStyles().textStyle14regular.copyWith(
+                      color: ColorStyles.grey,
+                    ),
+              ),
             ]),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: InkWell(onTap: (){},
-                  child: Image.asset(Assets.pngArchiveIcon,width: 24.w,),
-                ),
+            child: InkWell(
+              onTap: () {},
+              child: Image.asset(
+                Assets.pngArchiveIcon,
+                width: 24.w,
+              ),
+            ),
           ),
         ],
       ),

@@ -3,13 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
+import 'package:parking/featuers/home/data/models/parking_garage_model.dart';
 import 'package:parking/generated/assets.dart';
 
 class ParkingGarageListTile extends StatelessWidget {
-  const ParkingGarageListTile({
-    super.key,
-  });
+  ParkingGarageListTile({super.key, required this.parkingGarage});
 
+  final ParkingGarage parkingGarage;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +20,7 @@ class ParkingGarageListTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8.r),
             child: Image.network(
-              "https://www.huntingtonplacedetroit.com/assets/img/P9391-60b6a36701.jpg",
+              parkingGarage.image.toString(),
               height: 90.h,
               width: 110.w,
               fit: BoxFit.cover,
@@ -34,7 +34,7 @@ class ParkingGarageListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Freeway Park Garage",
+                  parkingGarage.name.toString(),
                   style: TextStyles().textStyle14Bold,
                 ),
                 SizedBox(
@@ -50,7 +50,7 @@ class ParkingGarageListTile extends StatelessWidget {
                       width: 4.w,
                     ),
                     Text(
-                      "1023 Hgih W Street",
+                      parkingGarage.address.toString(),
                       style: TextStyles().textStyle12regular,
                     ),
                   ],
@@ -60,13 +60,13 @@ class ParkingGarageListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      "\$10/",
+                      parkingGarage.pricePerHour.toString(),
                       style: TextStyles()
                           .textStyle20Bold
                           .copyWith(color: ColorStyles.blue500),
                     ),
                     Text(
-                      "hr",
+                      "/hr",
                       style: TextStyles().textStyle12semiBold,
                     ),
                   ],

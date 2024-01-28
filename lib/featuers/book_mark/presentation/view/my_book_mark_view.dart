@@ -32,7 +32,7 @@ class MyBookMarkView extends StatelessWidget {
           ),
         ],
       ),
-      body: const BookmarkViewBody(),
+      body: BookmarkViewBody(),
     );
   }
 }

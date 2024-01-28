@@ -5,6 +5,7 @@ import 'package:parking/featuers/authentication/presentation/views/login_view.da
 import 'package:parking/featuers/authentication/presentation/views/signup_view.dart';
 import 'package:parking/featuers/book_mark/presentation/view/my_book_mark_view.dart';
 import 'package:parking/featuers/garage_details/presentation/views/garage_view.dart';
+import 'package:parking/featuers/home/data/models/parking_garage_model.dart';
 import 'package:parking/featuers/home/presentation/views/home_view.dart';
 import 'package:parking/featuers/nav_bar/presentation/view/bottom_nav_bar.dart';
 import 'package:parking/featuers/notification/presentation/view/notification_view.dart';
@@ -17,7 +18,7 @@ import 'package:parking/featuers/search/presentation/view/search_view.dart';
 
 abstract class AppRouter {
   static const kMyParkingView = "/myParkingView";
-  static const kOnBoardingView = "/";
+  static const kOnBoardingView = "/1";
   static const kLoginView = "/kLoginView";
   static const kMyBookMarkView = "/myBookMarkView";
   static const kNotificationView = "/notificationView";
@@ -28,7 +29,7 @@ abstract class AppRouter {
   static const kCreateNewPasswordView = "/createNewPasswordView";
   static const kHomeView = "/HomeView";
   static const kGarageView = "/garageView";
-  static const kBottomNavBar = "/bottomNavBar";
+  static const kBottomNavBar = "/";
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -88,18 +89,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (BuildContext context, GoRouterState state) =>
-            const HomeView(),
+        builder: (BuildContext context, GoRouterState state) => HomeView(),
       ),
       GoRoute(
         path: kGarageView,
         builder: (BuildContext context, GoRouterState state) =>
-            const GarageView(),
-      ),
-      GoRoute(
-        path: kGarageView,
-        builder: (BuildContext context, GoRouterState state) =>
-            const GarageView(),
+            GarageView(garageModel: state.extra as ParkingGarage),
       ),
       GoRoute(
         path: kBottomNavBar,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking/core/utils/colors_styles.dart';
-import 'package:parking/core/utils/text_styles.dart';
 import 'package:parking/featuers/book_mark/presentation/view/my_book_mark_view.dart';
 import 'package:parking/featuers/home/presentation/views/home_view.dart';
 import 'package:parking/featuers/nav_bar/presentation/manger/botton_nav_bar_cubit.dart';
@@ -18,7 +17,7 @@ class BottomNavBarView extends StatelessWidget {
         builder: (context, state) {
           return IndexedStack(
             index: state,
-            children: const <Widget>[
+            children: <Widget>[
               HomeView(),
               MyParkingView(),
               MyBookMarkView(),
@@ -41,22 +40,23 @@ class BottomNavBarView extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
-                activeIcon: Icon(Icons.home,color: ColorStyles.blue700),
+                activeIcon: Icon(Icons.home, color: ColorStyles.blue700),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.local_parking),
                 label: 'MyParking',
-                activeIcon: Icon(Icons.local_parking,color: ColorStyles.blue700),
+                activeIcon:
+                    Icon(Icons.local_parking, color: ColorStyles.blue700),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.bookmark),
                 label: 'BookMark',
-                activeIcon: Icon(Icons.bookmark,color: ColorStyles.blue700),
+                activeIcon: Icon(Icons.bookmark, color: ColorStyles.blue700),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'Profile',
-                activeIcon: Icon(Icons.person,color: ColorStyles.blue700),
+                activeIcon: Icon(Icons.person, color: ColorStyles.blue700),
               ),
             ],
           );

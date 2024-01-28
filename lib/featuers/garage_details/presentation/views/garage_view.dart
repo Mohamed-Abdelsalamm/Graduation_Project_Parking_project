@@ -5,12 +5,13 @@ import 'package:parking/core/utils/box_shadow_constants.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
 import 'package:parking/core/widgets/custom_button.dart';
+import 'package:parking/featuers/home/data/models/parking_garage_model.dart';
 import 'package:parking/generated/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GarageView extends StatelessWidget {
-  const GarageView({super.key});
-
+  GarageView({super.key, required this.garageModel});
+  final ParkingGarage garageModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,7 @@ class GarageView extends StatelessWidget {
               child: Column(
                 children: [
                   Image.network(
-                    "https://www.huntingtonplacedetroit.com/assets/img/P9391-60b6a36701.jpg",
+                    garageModel.image,
                     width: MediaQuery.of(context).size.width,
                     height: 240.h,
                     fit: BoxFit.cover,
@@ -50,7 +51,7 @@ class GarageView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    "Parking of City Stars",
+                                    garageModel.name,
                                     style: TextStyles().textStyle20Bold,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -60,7 +61,7 @@ class GarageView extends StatelessWidget {
                                     height: 12.h,
                                   ),
                                   Text(
-                                    "9599, Cairo St. Lorem Ipsum Data",
+                                    garageModel.address,
                                     style: TextStyles().textStyle14regular,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -81,7 +82,7 @@ class GarageView extends StatelessWidget {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 launchGoogleMaps();
                               },
                               child: Container(
@@ -90,7 +91,8 @@ class GarageView extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30.r),
                                     border: Border.all(
-                                        color: ColorStyles.blue700, width: 1.5)),
+                                        color: ColorStyles.blue700,
+                                        width: 1.5)),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -150,7 +152,7 @@ class GarageView extends StatelessWidget {
                                     size: 18.h,
                                     color: ColorStyles.blue700,
                                   ),
-                                  const Text('2.00 / hr'),
+                                  Text('${garageModel.pricePerHour} / hr'),
                                 ],
                               ),
                             ),
@@ -196,14 +198,13 @@ class GarageView extends StatelessWidget {
       )),
     );
   }
+
   static Future<void> launchGoogleMaps() async {
-    const double destinationLatitude= 31.0409;
+    const double destinationLatitude = 31.0409;
     const double destinationLongitude = 31.3785;
     final uri = Uri(
         scheme: "google.navigation",
-        queryParameters: {
-          'q': '$destinationLatitude, $destinationLongitude'
-        });
+        queryParameters: {'q': '$destinationLatitude, $destinationLongitude'});
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
