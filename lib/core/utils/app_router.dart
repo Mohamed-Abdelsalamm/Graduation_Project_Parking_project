@@ -24,6 +24,7 @@ abstract class AppRouter {
   static const kNotificationView = "/notificationView";
   static const kSearchView = "/searchView";
   static const kProfileView = "/profileView";
+  static const kUserProfileView = "/userProfileView";
   static const kEditProfileView = "/editProfileView";
   static const kSignUpView = "/signUpView";
   static const kCreateNewPasswordView = "/createNewPasswordView";
@@ -83,7 +84,7 @@ abstract class AppRouter {
             const CreateNewPasswordView(),
       ),
       GoRoute(
-        path: kProfileView,
+        path: kUserProfileView,
         builder: (BuildContext context, GoRouterState state) =>
             const UserProfileView(),
       ),

@@ -7,6 +7,8 @@ import 'package:parking/featuers/nav_bar/presentation/manger/botton_nav_bar_cubi
 import 'package:parking/featuers/parking_history/presentation/views/my_parking_view.dart';
 import 'package:parking/featuers/profile/presentation/views/user_profile_view.dart';
 
+import '../../../profile/presentation/view/profile_view.dart';
+
 class BottomNavBarView extends StatelessWidget {
   const BottomNavBarView({super.key});
 
@@ -21,7 +23,7 @@ class BottomNavBarView extends StatelessWidget {
               HomeView(),
               MyParkingView(),
               MyBookMarkView(),
-              UserProfileView(),
+              ProfileView(),
             ],
           );
         },

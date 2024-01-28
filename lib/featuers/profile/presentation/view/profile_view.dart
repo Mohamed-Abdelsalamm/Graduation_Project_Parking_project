@@ -16,11 +16,12 @@ class ProfileView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
-        leading: IconButton(
+        centerTitle: true,
+        /*leading: IconButton(
             onPressed: () {
               GoRouter.of(context).pop();
             },
-            icon: const Icon(Icons.arrow_back_outlined)),
+            icon: const Icon(Icons.arrow_back_outlined)),*/
         title: Text("Profile", style: TextStyles().textStyle22Bold),
         actions: [
           Padding(

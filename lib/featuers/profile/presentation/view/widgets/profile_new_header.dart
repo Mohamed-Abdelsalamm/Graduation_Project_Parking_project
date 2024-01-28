@@ -15,6 +15,7 @@ class ProfileViewHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
+          backgroundColor: Colors.grey[200],
           radius: 55.r,
           child: Icon(
             Icons.person,
@@ -26,14 +27,14 @@ class ProfileViewHeader extends StatelessWidget {
           height: 12.h,
         ),
         Text(
-          "Mohamed Abdelsalam",
+          "Omar Nabel",
           style: TextStyles().textStyle18semiBold,
         ),
         SizedBox(
           height: 8.h,
         ),
         Text(
-          "abdelslamm67@gmail.com",
+          "OmarNabel@gmail.com",
           style: TextStyles().textStyle14regular,
         ),
       ],
