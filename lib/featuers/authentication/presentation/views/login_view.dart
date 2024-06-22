@@ -130,12 +130,13 @@ class LoginView extends StatelessWidget {
                       CustomButton(
                         title: 'Sign In',
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            BlocProvider.of<LoginCubit>(context).login(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
-                          }
+                          GoRouter.of(context).go(AppRouter.kBottomNavBar);
+                          // if (_formKey.currentState!.validate()) {
+                          //   BlocProvider.of<LoginCubit>(context).login(
+                          //     email: emailController.text,
+                          //     password: passwordController.text,
+                          //   );
+                          // }
                         },
                       ),
                       SizedBox(
