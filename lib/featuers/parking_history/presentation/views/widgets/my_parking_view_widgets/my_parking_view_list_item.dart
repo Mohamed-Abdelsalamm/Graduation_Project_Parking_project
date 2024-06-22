@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:parking/core/constants.dart';
 import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/text_styles.dart';
@@ -77,7 +78,7 @@ class MyParkingViewListItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "\$8.08",
+                        "EGP 8.08",
                         style: TextStyles()
                             .textStyle14Bold
                             .copyWith(color: ColorStyles.blue700),
@@ -128,14 +129,24 @@ class MyParkingViewListItem extends StatelessWidget {
           bookType == Constants.kOnGoing
               ? Row(
                   children: [
-                    Expanded(child: GestureDetector(
-                        child: const CustomButton(title: "View Timer"))),
+                    Expanded(
+                        child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                        content: StopwatchPage());
+                                  });
+                            },
+                            child: const CustomButton(title: "View Timer"))),
                     SizedBox(
                       width: 20.w,
                     ),
-                    Expanded(child: GestureDetector(
-                      onTap: () => _showQRCodeDialog(context),
-                        child: const CustomButton(title: "View Ticket"))),
+                    Expanded(
+                        child: GestureDetector(
+                            onTap: () => _showQRCodeDialog(context),
+                            child: const CustomButton(title: "View Ticket"))),
                   ],
                 )
               : const SizedBox(),
@@ -143,16 +154,138 @@ class MyParkingViewListItem extends StatelessWidget {
       ),
     );
   }
+
   void _showQRCodeDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Scan the QR Code",textAlign: TextAlign.center),
-          content: Icon(Icons.qr_code_2,size: 200.r,),
+          title: const Text("Scan the QR Code", textAlign: TextAlign.center),
+          content: Icon(
+            Icons.qr_code_2,
+            size: 200.r,
+          ),
         );
       },
     );
   }
+}
 
+class StopwatchPage extends StatefulWidget {
+  @override
+  _StopwatchPageState createState() => _StopwatchPageState();
+}
+
+class _StopwatchPageState extends State<StopwatchPage> {
+  late Stopwatch _stopwatch;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _stopwatch = Stopwatch();
+    _timer = Timer.periodic(const Duration(milliseconds: 30), (timer) {
+      if (_stopwatch.isRunning) {
+        setState(() {});
+      }
+      _startStopwatch();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  void _startStopwatch() {
+    setState(() {
+      _stopwatch.start();
+    });
+  }
+
+  void _stopStopwatch() {
+    setState(() {
+      _stopwatch.stop();
+    });
+  }
+
+  void _resetStopwatch() {
+    setState(() {
+      _stopwatch.reset();
+    });
+  }
+
+  String _formattedTime() {
+    final milliseconds = _stopwatch.elapsedMilliseconds + 10000;
+    final minutes = (milliseconds ~/ 60000).toString().padLeft(2, '0');
+    final seconds = ((milliseconds ~/ 1000) % 60).toString().padLeft(2, '0');
+    final hundredths = ((milliseconds % 1000) ~/ 10).toString().padLeft(2, '0');
+    return "$minutes:$seconds.$hundredths";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          _formattedTime(),
+          style: const TextStyle(fontSize: 48),
+        ),
+        const SizedBox(height: 20),
+        CustomButton(
+          onPressed: () {
+            // _stopStopwatch();
+            Navigator.pop(context);
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                      content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 60.r,
+                      ),
+                      const SizedBox(height: 20),
+                      const Text("The Parking has Ended",
+                          textAlign: TextAlign.center),
+                      const SizedBox(height: 20),
+                      const Text("The Parking consumed 1 hours",
+                          textAlign: TextAlign.center),
+                      const SizedBox(height: 12),
+                      const Row(
+                        children: [
+                          Text("The cost of the parking is",
+                              textAlign: TextAlign.center),
+                          SizedBox(width: 8),
+                          Text("EGP  8.08",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorStyles.blue700,
+                                  fontSize: 16)),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      CustomButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        title: 'Ok',
+                      ),
+                    ],
+                  ));
+                });
+          },
+          title: 'End Parking',
+        ),
+      ],
+    );
+  }
 }

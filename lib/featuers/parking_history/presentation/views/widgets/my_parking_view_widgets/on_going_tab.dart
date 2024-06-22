@@ -6,16 +6,16 @@ import 'package:parking/featuers/parking_history/presentation/views/widgets/my_p
 class OnGoingTab extends StatelessWidget {
   const OnGoingTab({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemBuilder: (context, index) => const MyParkingViewListItem(bookType: Constants.kOnGoing),
+      itemBuilder: (context, index) =>
+          const MyParkingViewListItem(bookType: Constants.kOnGoing),
       padding: EdgeInsets.symmetric(vertical: 20.h),
       separatorBuilder: (context, index) => SizedBox(
         height: 20.h,
-      ), itemCount: 5,
+      ),
+      itemCount: 1,
     );
   }
 }
-
