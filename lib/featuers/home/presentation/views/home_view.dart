@@ -12,65 +12,85 @@ import 'package:parking/generated/assets.dart';
 
 import '../../data/models/parking_garage_model.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   final name = "Omar";
+
   final List<ParkingGarage> convertedGarages = [
     {
       "image":
           "https://www.huntingtonplacedetroit.com/assets/img/P9391-60b6a36701.jpg",
-      "name": "Freeway Park Garage",
-      "address": "1023 Hgih W Street",
-      "pricePerHour": "\$10"
+      "name": "Elmohfza Garage",
+      "address": "elmohfza street",
+      "pricePerHour": "EGP  10"
     },
     {
       "image":
           "https://images.unsplash.com/photo-1470224114660-3f6686c562eb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "name": "Central Plaza Garage",
-      "address": "789 Downtown Avenue",
-      "pricePerHour": "\$12"
+      "name": "elmansoura Plaza Garage",
+      "address": "elmansoura upper street",
+      "pricePerHour": "EGP  12"
     },
     {
       "image":
           "https://media.istockphoto.com/id/1578358219/photo/suspended-lift-parking-with-cars.webp?b=1&s=170667a&w=0&k=20&c=ag6BwZG7LDX4hkK78t3U5uPQy7P2jmaW96bhH3M09DM=",
       "name": "Skyline Parking Center",
-      "address": "456 Urban Street",
-      "pricePerHour": "\$8"
+      "address": "elmansoura lower street",
+      "pricePerHour": "EGP  8"
     },
     {
       "image":
           "https://img.freepik.com/free-photo/empty-garage-with-parking-lots-with-concrete-ceiling-flooring-pillars-marked-with-numbers_342744-1241.jpg?size=626&ext=jpg&ga=GA1.1.276142506.1706480567&semt=ais",
       "name": "Metro Park Garage",
-      "address": "621 Cityview Lane",
-      "pricePerHour": "\$15"
+      "address": "elmansoura middle street",
+      "pricePerHour": "EGP  15"
     },
     {
       "image":
           "https://img.freepik.com/premium-photo/car-underground-parking-garage_220873-2142.jpg?w=1060",
-      "name": "Downtown Express Parking",
-      "address": "987 Avenue Street",
-      "pricePerHour": "\$11"
+      "name": "Downtown Parking",
+      "address": "Elgish Street",
+      "pricePerHour": "EGP  11"
     },
     {
       "image":
           "https://img.freepik.com/free-photo/hallway-garage_23-2149397542.jpg?size=626&ext=jpg&ga=GA1.1.276142506.1706480567&semt=ais",
-      "name": "Harbor View Garage",
-      "address": "234 Waterfront Road",
-      "pricePerHour": "\$14"
+      "name": "Awadllah Garage",
+      "address": "Abdelsalam Aref Road",
+      "pricePerHour": "EGP  14"
     },
     {
       "image":
           "https://www.huntingtonplacedetroit.com/assets/img/P9391-60b6a36701.jpg",
       "name": "City Center Parking",
       "address": "789 Main Street",
-      "pricePerHour": "\$9"
+      "pricePerHour": "EGP  9"
     }
   ].map((json) => ParkingGarage.fromJson(json)).toList();
 
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _showDataAfterDelay();
+  }
+
+  void _showDataAfterDelay() async {
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-// Convert JSON back to ParkingGarage instances
-
     return Scaffold(
       backgroundColor: ColorStyles.blue500,
       body: SafeArea(
@@ -151,49 +171,57 @@ class HomeView extends StatelessWidget {
                     top: Radius.circular(25.r),
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-                      height: 48.h,
-                      child: CustomTextFormField(
-                        hintText2: 'Search',
-                        prefixIcon: const Icon(
-                          Icons.search,
-                          color: ColorStyles.grey,
-                        ),
-                        textEditingController: TextEditingController(),
-                        boxShadow: const [BoxShadowsConstants.lightBoxShadow],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
-                    Text(
-                      "Parking Nearby",
-                      style: TextStyles().textStyle16Bold,
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: convertedGarages.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                              onTap: () {
-                                GoRouter.of(context).push(AppRouter.kGarageView,
-                                    extra: convertedGarages[index]);
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                            color: ColorStyles.blue500))
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SizedBox(
+                            height: 48.h,
+                            child: CustomTextFormField(
+                              hintText2: 'Search',
+                              prefixIcon: const Icon(
+                                Icons.search,
+                                color: ColorStyles.grey,
+                              ),
+                              textEditingController: TextEditingController(),
+                              boxShadow: const [
+                                BoxShadowsConstants.lightBoxShadow
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          Text(
+                            "Parking Nearby",
+                            style: TextStyles().textStyle16Bold,
+                          ),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: convertedGarages.length,
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                    onTap: () {
+                                      GoRouter.of(context).push(
+                                          AppRouter.kGarageView,
+                                          extra: convertedGarages[index]);
+                                    },
+                                    child: ParkingGarageListTile(
+                                        parkingGarage:
+                                            convertedGarages[index]));
                               },
-                              child: ParkingGarageListTile(
-                                  parkingGarage: convertedGarages[index]));
-                        },
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
               ),
             ),
           ],

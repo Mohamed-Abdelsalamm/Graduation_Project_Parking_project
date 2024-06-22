@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parking/core/utils/colors_styles.dart';
 import 'package:parking/core/utils/service_locator.dart';
 import 'package:parking/featuers/authentication/data/repo/auth_repo_impl.dart';
 import 'package:parking/featuers/authentication/presentation/manager/login_cubit/login_cubit.dart';
@@ -48,6 +49,13 @@ class ParkingApp extends StatelessWidget {
             appBarTheme: const AppBarTheme(surfaceTintColor: Colors.white),
             scaffoldBackgroundColor: Colors.grey.shade100,
             textTheme: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme),
+            primarySwatch: Colors.blue,
+            colorScheme: const ColorScheme.light(
+              primary: ColorStyles.blue500,
+              secondary: ColorStyles.blue500,
+              onPrimary: ColorStyles.white,
+              onSecondary: ColorStyles.white,
+            ),
           ),
         ),
       ),
